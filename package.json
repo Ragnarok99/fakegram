@@ -1,8 +1,15 @@
 {
   "name": "fakegram",
   "version": "0.1.0",
-  "description": "Registrate para ver fotos de tus amigos",
+  "description": "comparte fotos",
   "main": "server.js",
+  "dependencies": {
+    "graceful-fs": "^4.1.4"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.3.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -11,12 +18,10 @@
     "type": "git",
     "url": "git+https://github.com/Ragnarok99/fakegram.git"
   },
-  "author": "Ragnarok99",
+  "author": "",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Ragnarok99/fakegram/issues"
   },
-  "homepage": "https://github.com/Ragnarok99/fakegram#readme",
-
-
+  "homepage": "https://github.com/Ragnarok99/fakegram#readme"
 }

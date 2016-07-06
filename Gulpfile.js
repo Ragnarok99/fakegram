@@ -9,4 +9,4 @@ gulp.task('styles', function() {
 })
 
 
-gulp.task('default', [styles])
+gulp.task('default', ['styles'])
