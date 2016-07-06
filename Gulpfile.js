@@ -6,7 +6,7 @@ gulp.task('styles', function() {
   .src('index.scss')
   .pipe(sass())
   .pipe(gulp.dest('public'));
-})
+});
 
 
 gulp.task('default', ['styles'])
