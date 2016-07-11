@@ -2,8 +2,10 @@ var express = require('express');
 //import express from 'express' //es2015
 var app = express();
 
+app.set('view engine', 'pug');
+
 app.get('/', function(req, res) {
-  res.send('hola mundo');
+  res.render('index', {  })
 })
 
 app.listen(3000, function(err) {
