@@ -3,6 +3,7 @@ var express = require('express');
 var app = express();
 
 app.set('view engine', 'pug');
+app.use(express.static('public'));//indicarle al server que se sirva el directorio
 
 app.get('/', function(req, res) {
   res.render('index', {  })
