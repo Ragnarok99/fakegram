@@ -8,5 +8,10 @@ gulp.task('styles', function() {
   .pipe(gulp.dest('public'));
 });
 
+gulp.task('assets', function () {
+  gulp
+  .src('assets/*')
+  .pipe(gulp.dest('public'));
+})
 
-gulp.task('default', ['styles'])
+gulp.task('default', ['styles', 'assets'])
