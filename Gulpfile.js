@@ -10,7 +10,7 @@ gulp.task('styles', function() {
   gulp
   .src('index.scss')
   .pipe(sass())
-  .pipe(rename('app.css'))
+  .pipe(rename('app.css'))//renombrar el archivo
   .pipe(gulp.dest('public'));
 });
 

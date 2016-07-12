@@ -6,6 +6,7 @@
   "dependencies": {
     "express": "^4.14.0",
     "graceful-fs": "^4.1.4",
+    "page": "^1.7.1",
     "pug": "^2.0.0-beta3"
   },
   "devDependencies": {
