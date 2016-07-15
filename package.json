@@ -4,10 +4,12 @@
   "description": "comparte fotos con tus amigos",
   "main": "server.js",
   "dependencies": {
+    "empty-element": "^1.0.0",
     "express": "^4.14.0",
     "graceful-fs": "^4.1.4",
     "page": "^1.7.1",
-    "pug": "^2.0.0-beta3"
+    "pug": "^2.0.0-beta3",
+    "yo-yo": "^1.2.2"
   },
   "devDependencies": {
     "babelify": "^7.3.0",
