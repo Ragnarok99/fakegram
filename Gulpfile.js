@@ -28,6 +28,7 @@ function compile(watch) {
   bundle
     .transform(babel)//permite usar todo lo mas nuevo de es2015
     .bundle()
+    .on('error', function(error) { console.log(error); this.emit('end')  })
     .pipe(source('index.js'))//trasnformar lo que devuelve el bundle a algo que nentienda gulp
     .pipe(rename('app.js'))
     .pipe(gulp.dest('public'));
