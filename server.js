@@ -6,15 +6,15 @@ app.set('view engine', 'pug');
 app.use(express.static('public'));//indicarle al server que se sirva el directorio
 
 app.get('/', function(req, res) {
-  res.render('index', {  })
+  res.render('index', { title: 'Fakegram' });
 })
 
 app.get('/signup', function(req, res) {
-  res.render('index', {  })
+  res.render('index', { title: 'Fakegram - signup'  });
 })
 
 app.get('/signin', function(req, res) {
-  res.render('index', {  })
+  res.render('index', { title: 'Fakegram - signin'  });
 })
 
 app.listen(3000, function(err) {
