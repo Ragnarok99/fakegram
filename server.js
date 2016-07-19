@@ -67,7 +67,7 @@ var pictures = [
 ];
 setTimeout(function(params) {
   res.send(pictures);
-}, 2000);//simular el cargado de la BD
+}, 1000);//simular el cargado de la BD
 
 })
 
