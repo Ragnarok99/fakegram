@@ -1,5 +1,18 @@
 var express = require('express');
 //import express from 'express' //es2015
+var multer = require('multer');
+var ext = require('file-extension');
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now()+ '.'+ ext(file.originalname));
+  }
+})
+
+var upload = multer({storage: storage}).single('picture');//picture name del campo file del formulario
+
 var app = express();
 
 app.set('view engine', 'pug');
@@ -16,6 +29,16 @@ app.get('/signup', function(req, res) {
 app.get('/signin', function(req, res) {
   res.render('index', { title: 'Fakegram - signin'  });
 })
+
+app.post('/api/pictures',function (req, res) {
+  upload(req, res, function (err) {
+    if(err){
+      return res.send(500, "error subiendo archivo");
+    }
+    res.send("archivo subido correctamente!!");
+  })
+
+});
 
 app.get('/api/pictures', function (req, res, next) {
   

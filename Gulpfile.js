@@ -22,7 +22,14 @@ gulp.task('assets', function () {
 
 
 function compile(watch) {
-  var bundle = watchify(browserify('./src/index.js'));//escucha el archivo
+  var bundle = browserify('./src/index.js');//escucha el archivo
+  if (watch) {
+    bundle = watchify(bundle);
+    bundle.on('update', function() {
+      console.log('bundling...');
+      rebundle();
+    })
+  }
 
   function rebundle() {
   bundle
@@ -34,12 +41,6 @@ function compile(watch) {
     .pipe(gulp.dest('public'));
 }
 
-  if (watch) {
-    bundle.on('update', function() {
-      console.log('bundling...');
-      rebundle();
-    })
-  }
   rebundle();
 }
 

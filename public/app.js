@@ -10389,7 +10389,7 @@ function loadPictures(ctx, next) {
             if (err) return console.log(err);
 
             ctx.pictures = res.body; //compartir datos atraves de los middlewares con ctx
-            next(); //siguiente middleware
+            next(); //siguiente middleware  
       });
 }
 
@@ -10397,9 +10397,25 @@ function loadPictures(ctx, next) {
 var yo = require('yo-yo');
 var layout = require('../layout');
 var picture = require('../picture-card');
+var translate = require('../translate');
+var request = require('superagent');
 
 module.exports = function (pictures) {
     var el = yo`<div class="container timeline">
+                   <div class="row">
+                        <div class="col s12 m10 offset-m1 l8 offset-l2 center-align">
+                            <form enctype="multipart/form-data" class="form-upload" id="formUpload" onsubmit=${ onsubmit }>
+                                <div id="fileName" class="fileUpload btn btn-flat cyan">
+                                    <span><i class="fa fa-camera" aria-hidden="true"></i> ${ translate.message('upload-picture') }  </span>
+                                    <input name="picture" type="file" id="file" class="upload" onchange=${ onchange } />
+                                    
+                                </div>
+                                <button id="btnUpload" type="submit" class="btn btn-flat cyan hide">${ translate.message('upload') } </button>
+                                <button id="btnCancel" type="button" class="btn btn-flat red hide"  onclick=${ cancel }><i class="fa fa-times" aria-hidden="true"></i></button>
+                            </form>
+                        </div>
+                    </div>
+
                    <div class="row">
                     <div class="col s12 m10 offset-m1 l6 offset-l3">
                         ${ pictures.map(function (pic) {
@@ -10408,11 +10424,31 @@ module.exports = function (pictures) {
                     </div>
                    </div>
                 </div>`;
+    function toggleButtons() {
+        document.getElementById('fileName').classList.toggle('hide');
+        document.getElementById('btnUpload').classList.toggle('hide');
+        document.getElementById('btnCancel').classList.toggle('hide');
+    }
 
+    function cancel() {
+        toggleButtons();
+        document.getElementById('formUpload').reset();
+    }
+    function onchange() {
+        toggleButtons();
+    }
+
+    function onsubmit(ev) {
+        ev.preventDefault();
+        var data = new FormData(this); //this dentro del form es el formulario mismo
+        request.post('/api/pictures').send(data).end(function (err, res) {
+            console.log(arguments);
+        });
+    }
     return layout(el);
 };
 
-},{"../layout":58,"../picture-card":59,"yo-yo":43}],56:[function(require,module,exports){
+},{"../layout":58,"../picture-card":59,"../translate":66,"superagent":37,"yo-yo":43}],56:[function(require,module,exports){
 var page = require('page');
 
 require('./homepage');
@@ -10598,7 +10634,9 @@ module.exports = {
     'signup.have-account': 'Already have an account?',
     'signin': 'Sign in',
     'signin.not-have-account': 'Don\'t you have an account?',
-    'languaje': 'languaje'
+    'languaje': 'languaje',
+    'upload': 'Upload',
+    'upload-picture': 'Upload picture'
 };
 
 },{}],65:[function(require,module,exports){
@@ -10618,7 +10656,9 @@ module.exports = {
     'signup.have-account': '¿Tienes una cuenta?',
     'signin': 'Entrar',
     'signin.not-have-account': '¿No tienes una cuenta?',
-    'languaje': 'Idioma'
+    'languaje': 'Idioma',
+    'upload': 'Subir',
+    'upload-picture': 'Subir foto'
 
 };
 
