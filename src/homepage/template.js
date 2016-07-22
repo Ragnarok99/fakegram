@@ -40,7 +40,6 @@ module.exports = function (pictures) {
                                 </form>
                             </div>
                         </div>
-
                     <div class="row">
                         <div class="col s12 m10 offset-m1 l6 offset-l3" id="picture-cards">
                             ${pictures.map(function (pic) {
@@ -77,4 +76,3 @@ module.exports = function (pictures) {
     }
     return layout(el); 
 }
-

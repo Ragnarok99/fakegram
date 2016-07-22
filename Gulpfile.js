@@ -33,7 +33,7 @@ function compile(watch) {
 
   function rebundle() {
   bundle
-    .transform(babel)//permite usar todo lo mas nuevo de es2015
+    .transform(babel, {presets: ["es2015"], "plugins": ["syntax-async-functions", "transform-regenerator"]})//permite usar todo lo mas nuevo de es2015
     .bundle()
     .on('error', function(error) { console.log(error); this.emit('end')  })
     .pipe(source('index.js'))//trasnformar lo que devuelve el bundle a algo que entienda gulp

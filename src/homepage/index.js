@@ -9,7 +9,7 @@ var webcam = require('webcamjs');
 var picture = require ('../picture-card');
 
 
-page('/', header, loadPictures, function (ctx, next) {//se ejecutan nla funciones en cadena una tras otra, header hace el appern del heade, y loadPictures carga los datos haciendo la peticion a la api
+page('/', header, loading ,loadPictures, function (ctx, next) {//se ejecutan nla funciones en cadena una tras otra, header hace el appern del heade, y loadPictures carga los datos haciendo la peticion a la api
 title('Fakegram');
 var main = document.getElementById('main-container');
 
@@ -28,6 +28,7 @@ function reset(){
       shootButton.removeClass('hide');
       camaraInput.removeClass('hide');
 }
+
 
 cancelPicture.click(reset);
 
@@ -78,5 +79,16 @@ function loadPictures(ctx, next) {
               next();//siguiente middleware    
             })
 }
+
+function loading(ctx, next) {
+  var container = document.createElement('div');
+  var loadingEl = document.createElement('div');
+  container.classList.add('loader-container');
+  loadingEl.classList.add('loader');
+  container.appendChild(loadingEl);
+  document.getElementById('main-container').appendChild(container);
+  next();
+}
+
 
 
